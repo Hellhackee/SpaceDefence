@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d97858cac8ce334c9c15140d552c375, type: 3}
+  m_Name: Rocket
+  m_EditorClassIdentifier: 
+  _icon: {fileID: 21300000, guid: 15c09fd1af04f324aaf5073a1241d444, type: 3}
+  _price: 100
+  _damage: 50
+  _cooldown: 2
+  _range: 22
+  _ammo: 10
+  _tower: {fileID: -5074312778431649408, guid: 4f3f7545790183b45a90690d9f7f9ca0, type: 3}
+  _bullet: {fileID: 4026609715346424265, guid: af2b7901ecdf1584995b1b72770cb645, type: 3}
