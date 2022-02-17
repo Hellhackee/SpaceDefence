@@ -7,8 +7,14 @@ using DG.Tweening;
 public class GeneratedElement : MonoBehaviour
 {
     [SerializeField] private float _positionY;
-    private bool _isChosen = false;
+    [SerializeField] private TowerPanelSO _towerSO;
+    [SerializeField] private LayerMask _layerMask;
+    [SerializeField] private float _offsetY;
+    [SerializeField] private ParticleLines _particlePrefab;
 
+    private ParticleLines _particleLines;
+    private ParticleSystem _particleSystem;
+    private bool _isChosen = false;
     private Rigidbody rb;
 
     private void Awake()
@@ -25,6 +31,11 @@ public class GeneratedElement : MonoBehaviour
             Vector3 target = new Vector3(mousePosition.x, transform.position.y, mousePosition.z);
 
             transform.position = target;
+
+            if (_particleSystem != null)
+            {
+                _particleSystem.transform.position = transform.position;
+            }
         }    
     }
 
@@ -38,6 +49,15 @@ public class GeneratedElement : MonoBehaviour
         transformSequence.Play();
 
         SetChosenStatus(true);
+
+        _particleLines = Instantiate(_particlePrefab);
+        _particleSystem = _particleLines.GetComponent<ParticleSystem>();
+
+        if (_particleSystem != null)
+        {
+            _particleSystem.transform.position = transform.position;
+            _particleSystem.Play();
+        }
     }
 
     private void OnMouseUp()
@@ -47,11 +67,49 @@ public class GeneratedElement : MonoBehaviour
             rb.isKinematic = false;
 
             SetChosenStatus(false);
+
+            if (_particleSystem != null)
+            {
+                Destroy(_particleSystem);
+                Destroy(_particleLines);
+            }
+
+            RaycastHit[] rays = Physics.BoxCastAll(transform.position, new Vector3(3f, 15f, 3f), Vector3.down, Quaternion.Euler(0,0,0), 30f, _layerMask);
+            
+            foreach (RaycastHit ray in rays)
+            {
+                if (ray.collider.TryGetComponent<TowerPlace>(out TowerPlace towerPlace))
+                {
+                    if (towerPlace.IsBusy == false)
+                    {
+                        if (_towerSO != null)
+                        {
+                            Tower tower = Instantiate(_towerSO.TowerPrefab, towerPlace.Container);
+                            tower.Init(_towerSO);
+                            Transform place = towerPlace.transform;
+                            tower.transform.position = new Vector3(place.position.x, place.position.y + _offsetY, place.position.z);
+                            tower.transform.rotation = Quaternion.Euler(place.eulerAngles.x, place.eulerAngles.y, place.eulerAngles.z);
+                            tower.SetTowerPlace(towerPlace);
+
+                            towerPlace.SetBusyStatus(true);
+
+                            Destroy(gameObject);
+                        }
+                    }
+                }
+            }
+
         }
     }
 
     private void SetChosenStatus(bool value)
     {
         _isChosen = value;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawCube(transform.position, new Vector3(6f, 30f, 6f));
     }
 }

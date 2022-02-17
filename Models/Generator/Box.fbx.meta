@@ -1,24 +1,9 @@
 fileFormatVersion: 2
-guid: d079866dfb7cdd54385d7fbecad83d76
+guid: 36d5439a6825dbb42a1a0676d43f7be0
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Bot
-    second: {fileID: 2100000, guid: c61a0ecc5c4e44f40a00c2a14b4ff2c9, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Main
-    second: {fileID: 2100000, guid: 2f32943d9dc99d2478cab57ea7fc29b8, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: MainCircle
-    second: {fileID: 2100000, guid: 85013948cc0972041b63de1e218d3d06, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0

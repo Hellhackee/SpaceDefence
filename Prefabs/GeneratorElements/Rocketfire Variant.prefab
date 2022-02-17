@@ -90,21 +90,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4.195305, y: 1.9906658, z: 4.233405}
-  m_Center: {x: 0.006415844, y: 0.49533302, z: 0.0028195381}
---- !u!65 &7056227625243480462
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1451570202962285029}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.597652, y: 1.3171799, z: 1.1170869}
-  m_Center: {x: -0.13602304, y: 3.0499582, z: 0.014958024}
+  m_Size: {x: 4.195305, y: 4.0687504, z: 4.233405}
+  m_Center: {x: 0.006415844, y: 1.5343755, z: 0.0028195381}
 --- !u!114 &-4579087018175935123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,3 +105,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _positionY: -23
+  _towerSO: {fileID: 11400000, guid: b4ad8bb6c4ba5b042b5a43a0b1fad6d9, type: 2}
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  _offsetY: 0.45
+  _particlePrefab: {fileID: 710922836857498043, guid: 93c70f4e40dd0354d88621dc5a007262, type: 3}

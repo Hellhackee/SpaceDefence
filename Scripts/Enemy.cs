@@ -11,9 +11,7 @@ public class Enemy : MonoBehaviour
     private float _speed;
     private float _rotationTime;
     private int _health;
-    private int _award;
     private Transform _currentPoint;
-    private Wallet _wallet;
     private Spawner _spawner;
     private bool _isDead = false;
 
@@ -22,7 +20,6 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         _spawner = GameObject.FindObjectOfType<Spawner>();
-        _wallet = GameObject.FindObjectOfType<Wallet>();
 
         _currentPoint = _spawner.GetNextPoint(0);
     }
@@ -45,7 +42,6 @@ public class Enemy : MonoBehaviour
         _speed = speed;
         _rotationTime = rotationTime;
         _health = health;
-        _award = award;
     }
 
     public void ApplyDamage(int value)
@@ -68,7 +64,6 @@ public class Enemy : MonoBehaviour
         _isDead = true;
         _modelObject.SetActive(false);
         _dyingSystem.Play();
-        _wallet.ChangeMoney(_award);
         _spawner.RemoveEnemyFromList(this);
 
         Destroy(gameObject, 2f);
