@@ -7,9 +7,11 @@ using DG.Tweening;
 public class GeneratedElement : MonoBehaviour
 {
     [SerializeField] private float _positionY;
+    [SerializeField] private GameObject mainObject;
     [SerializeField] private TowerPanelSO _towerSO;
     [SerializeField] private LayerMask _layerMask;
     [SerializeField] private float _offsetY;
+    [SerializeField] private ParticleSystem _dieParticle;
     [SerializeField] private ParticleLines _particlePrefab;
 
     private ParticleLines _particleLines;
@@ -95,8 +97,25 @@ public class GeneratedElement : MonoBehaviour
 
                             Destroy(gameObject);
                         }
+                        else
+                        {
+                            DestroyThis();
+                        }
+                    }
+                    else
+                    {
+                        DestroyThis();
                     }
                 }
+                else
+                {
+                    DestroyThis();
+                }
+            }
+
+            if (rays.Length == 0)
+            {
+                DestroyThis();
             }
 
         }
@@ -111,5 +130,13 @@ public class GeneratedElement : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawCube(transform.position, new Vector3(6f, 30f, 6f));
+    }
+
+    private void DestroyThis()
+    {
+        Destroy(gameObject, 2f);
+
+        mainObject.SetActive(false);
+        _dieParticle.Play();
     }
 }
